@@ -86,3 +86,40 @@ def deletar_turma(i):
         cur = con_ban_dados.cursor()
         query = 'DELETE FROM Turmas WHERE id=?'
         cur.execute(query,i)
+
+
+#trabalhando com tabela de alunos ----------------------------
+
+# Criar Alunos (Inserir) Crud
+def criar_alunos(i):
+    with con_ban_dados:
+        cur = con_ban_dados.cursor()
+        query = 'INSERT INTO Alunos (nome, email, telefone, sexo, imagem, data_nascimento, cpf, turma_nome) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
+        cur.execute(query, i)
+
+# ver alunos (READ R) cRud
+def ver_alunos():
+    lista = []
+    with con_ban_dados:
+        cur = con_ban_dados.cursor()
+        cur.execute('SELECT * FROM Alunos')
+        linha = cur.fetchall()
+
+        for i in linha:
+            lista.append(i)
+    
+    return lista
+
+# Atualizar alunos(update U) crUd
+def atualizar_aluno(i):
+    with con_ban_dados:
+        cur = con_ban_dados.cursor()
+        query = 'UPDATE Turma SET nome=?, email=?, telefone=?, sexo=?, imagem=?, data_nascimento=?, cpf=?, turma_nome=? WHERE id=?'
+        cur.execute(query,i)
+
+# Deletar aluno(Delete D) cruD
+def deletar_aluno(i):
+    with con_ban_dados:
+        cur = con_ban_dados.cursor()
+        query = 'DELETE FROM Alunos WHERE id=?'
+        cur.execute(query,i)
